@@ -16,7 +16,6 @@ document.addEventListener("DOMContentLoaded", (event) => {
         let i = 0
         console.log(i)
         btnClick.addEventListener("click", function(){
-            carre.style.left = "100%"
             if(i === 0)
             {
                 carre.style.left = "100%"
@@ -24,21 +23,22 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 console.log(i)
                 i++
             }            
-             if(i === 1)
+            else if(i === 1)
             {
                 carre.style.left = "100%"
                 carre.style.top = "100%"            
                 i++
             }
-             if(i === 2)
+             else if(i === 2)
             {
                 carre.style.left = "0"
                 carre.style.top = "100%"
                 console.log(i)
             }
-            if(i === 3)
+            else if(i === 3)
             {
-                carre.classList.remove("gauchebas")
+                carre.style.left = "0"
+                carre.style.top = "100%"
 console.log(i)
             }
  
