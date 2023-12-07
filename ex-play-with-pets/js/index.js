@@ -45,13 +45,13 @@ document.addEventListener('DOMContentLoaded', () => {
        switch (event.code) {
         case "ArrowLeft":
             console.log(event.code)
-            i--
-            couverture.style.margin = `1em 1em 1em ${i}px`;
+            couverture.style.transform = "translate(-200px)";
+            couverture.style.transition ="3s"
           break;
         case "ArrowRight":
             console.log(event.code)
-            i++
-            couverture.style.margin = `1em 1em 1em ${i}px`;
+            couverture.style.transform = "translate(200px)";
+            couverture.style.transition = "3s"
           break;
         default:
           console.log("La touche " + event.code + " n'est pas autorisée.");
@@ -65,10 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // L'élément est accessible via la classe .js-race-chat-cover::after
 
     const raceBtn = document.querySelector(".js-race-chat-cover button");
-    const raceChatAfter = document.querySelector(".js-race-chat-cover::after");
+    const raceChatAfter = document.querySelector(".js-race-chat-cover");
 
     raceBtn.addEventListener("click", function(){
-        raceChatAfter.style.display = "block"
+        raceChatAfter.classList.toggle("visible")
         
 
     });
@@ -78,25 +78,21 @@ document.addEventListener('DOMContentLoaded', () => {
     // L'image est contenue dans un élément qui a la classe .js-race-chat-cover
 
     const raceChat = document.querySelector(".js-race-chat-cover img");
-    const raceChatImg = ["images/chat-geek.jpg", "images/chat-mignon.png"]
     let j = 0;
 
-    for(j = 0; j <= raceChatImg.length; j++){
-        console.log(raceChatImg[j])
-        raceChat.addEventListener("click", function(){
-                raceChat.setAttribute("src", `${raceChatImg[j]}`)
+    raceChat.addEventListener("click", function(){
+        raceChat.setAttribute("src", "images/chat-mignon.png")
 
-            });
-    }
-    
+    });
+
     
 
     // TODO : Les races de chat
     // Dans la liste, Mettre en gras le Sacré de Birmanie et le Tigré
     // La liste est accessible via la classe .js-race-chat-list
 
-    document.querySelector(".js-race-chat-list li:nth-child(-n + 6)").style.fontstyle = "bold"
-    document.querySelector(".js-race-chat-list li:nth-child(-n + 10)").style.fontstyle = "bold"
+    document.querySelector(".js-race-chat-list li:nth-child(6)").style.fontWeight  = "bold";
+    document.querySelector(".js-race-chat-list li:nth-child(10)").style.fontWeight  = "bold";
 
  
 
