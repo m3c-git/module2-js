@@ -44,12 +44,10 @@ document.addEventListener('DOMContentLoaded', () => {
         
        switch (event.code) {
         case "ArrowLeft":
-            console.log(event.code)
             couverture.style.transform = "translate(-200px)";
             couverture.style.transition ="3s"
           break;
         case "ArrowRight":
-            console.log(event.code)
             couverture.style.transform = "translate(200px)";
             couverture.style.transition = "3s"
           break;
