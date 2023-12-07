@@ -44,9 +44,9 @@ document.addEventListener("DOMContentLoaded", (event) => {
                 carre.style.left = "0"
                 carre.style.top = "0"
                 document.querySelector(".modal").classList.add("active")
+                console.log(i)
                 i = 0
-
-            console.log(i)
+                
             }
  
 
