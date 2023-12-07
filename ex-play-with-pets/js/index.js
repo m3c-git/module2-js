@@ -41,17 +41,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const couverture = document.querySelector(".js-main-cover")
 
     document.addEventListener("keydown", function(event){
-        let = i = 0
+        let i = 0
        switch (event.code) {
         case "ArrowLeft":
             console.log(event.code)
             i--
-            couverture.style.margin = `1em 1em 1em ${i}%`;
+            couverture.style.margin = `1em 1em 1em ${i}px`;
           break;
         case "ArrowRight":
             console.log(event.code)
             i++
-            couverture.style.margin = `1em 1em 1em ${i}%`;
+            couverture.style.margin = `1em 1em 1em ${i}px`;
           break;
         default:
           console.log("La touche " + event.code + " n'est pas autorisée.");
