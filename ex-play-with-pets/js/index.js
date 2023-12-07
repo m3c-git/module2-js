@@ -39,9 +39,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // L'image est contenue dans un élément qui a la classe .js-main-cover
 
     const couverture = document.querySelector(".js-main-cover")
-
+    let i = 0
     document.addEventListener("keydown", function(event){
-        let i = 0
+        
        switch (event.code) {
         case "ArrowLeft":
             console.log(event.code)
@@ -64,14 +64,40 @@ document.addEventListener('DOMContentLoaded', () => {
     // Afficher la bulle sur le chat au clic sur le bouton
     // L'élément est accessible via la classe .js-race-chat-cover::after
 
+    const raceBtn = document.querySelector(".js-race-chat-cover button");
+    const raceChatAfter = document.querySelector(".js-race-chat-cover::after");
+
+    raceBtn.addEventListener("click", function(){
+        raceChatAfter.style.display = "block"
+        
+
+    });
 
     // TODO : Les races de chat
     // Si on clique sur l'image, changer la photo
     // L'image est contenue dans un élément qui a la classe .js-race-chat-cover
 
+    const raceChat = document.querySelector(".js-race-chat-cover img");
+    const raceChatImg = ["images/chat-geek.jpg", "images/chat-mignon.png"]
+    let j = 0;
+
+    for(j = 0; j <= raceChatImg.length; j++){
+        console.log(raceChatImg[j])
+        raceChat.addEventListener("click", function(){
+                raceChat.setAttribute("src", `${raceChatImg[j]}`)
+
+            });
+    }
+    
+    
 
     // TODO : Les races de chat
     // Dans la liste, Mettre en gras le Sacré de Birmanie et le Tigré
     // La liste est accessible via la classe .js-race-chat-list
+
+    document.querySelector(".js-race-chat-list li:nth-child(-n + 6)").style.fontstyle = "bold"
+    document.querySelector(".js-race-chat-list li:nth-child(-n + 10)").style.fontstyle = "bold"
+
+ 
 
 });
