@@ -47,15 +47,30 @@ function createDamier() {
 
 // Les variables globales sont déclarées ici.
 // Uniquement si nécéssaire.
-const jsDamier = document.querySelector(".js-damier"); 
-const black1 = document.querySelectorAll(".js-row1:nth-child(odd)");
-const black2 = document.querySelectorAll(".js-row2:nth-child(even)");
-const black3 = document.querySelectorAll(".js-row3:nth-child(odd)");
-const black4 = document.querySelectorAll(".js-row4:nth-child(even)");
-const black5 = document.querySelectorAll(".js-row5:nth-child(odd)");
-const black6 = document.querySelectorAll(".js-row6:nth-child(even)");
-const black7 = document.querySelectorAll(".js-row7:nth-child(odd)");
-const black8 = document.querySelectorAll(".js-row8:nth-child(even)");
+ 
+const blackDamier1 = document.querySelectorAll(".js-row1:nth-child(odd)");
+const blackDamier2 = document.querySelectorAll(".js-row2:nth-child(even)");
+const blackDamier3 = document.querySelectorAll(".js-row3:nth-child(odd)");
+const blackDamier4 = document.querySelectorAll(".js-row4:nth-child(even)");
+const blackDamier5 = document.querySelectorAll(".js-row5:nth-child(odd)");
+const blackDamier6 = document.querySelectorAll(".js-row6:nth-child(even)");
+const blackDamier7 = document.querySelectorAll(".js-row7:nth-child(odd)");
+const blackDamier8 = document.querySelectorAll(".js-row8:nth-child(even)");
+const jsDamierBtn = document.querySelector(".js-damier");
+
+const cell  = document.querySelectorAll(".js-cell");
+const jsDiscoBtn = document.querySelector(".js-disco");
+
+/* const blackDamierLabyrin1 = document.querySelectorAll(".js-col1");
+const blackDamierLabyrin2 = document.querySelectorAll(".js-col1");
+const blackDamierLabyrin3 = document.querySelectorAll(".js-col1");
+const blackDamierLabyrin4 = document.querySelectorAll(".js-col1");
+const blackDamierLabyrin5 = document.querySelectorAll(".js-col1");
+const blackDamierLabyrin6 = document.querySelectorAll(".js-col1");
+const blackDamierLabyrin7 = document.querySelectorAll(".js-col7:nth-child(1,7)");
+const blackDamierLabyrin8 = document.querySelectorAll(".js-col8");
+ */
+const jsLabyrinthBtn = document.querySelector(".js-labyrinth");
 
 /**************************************************************/
 /*                        Fonctions                           */
@@ -63,27 +78,96 @@ const black8 = document.querySelectorAll(".js-row8:nth-child(even)");
 
 // Les fonctions (appelées par les Event Listener) sont déclarées ici.
 
+function clearDamier(){
+
+  for(c = 0; c < cell.length; c++){
+
+    cell[c].classList.remove("black","disco-color1", "disco-color2", "disco-color3", "disco-color4", "disco-color5");
+
+  }
+
+};
+
 function damier(){
 
+  clearDamier();
 
+  for(i = 0; i < blackDamier1.length; i++){
 
-  for(i = 0; i < black1.length; i++){
-
-  black1[i].classList.add("black")
-  black2[i].classList.add("black")
-  black3[i].classList.add("black")
-  black4[i].classList.add("black")
-  black5[i].classList.add("black")
-  black6[i].classList.add("black")
-  black7[i].classList.add("black")
-  black8[i].classList.add("black")
-  console.log("toto")
+    blackDamier1[i].classList.toggle("black")
+    blackDamier2[i].classList.toggle("black")
+    blackDamier3[i].classList.toggle("black")
+    blackDamier4[i].classList.toggle("black")
+    blackDamier5[i].classList.toggle("black")
+    blackDamier6[i].classList.toggle("black")
+    blackDamier7[i].classList.toggle("black")
+    blackDamier8[i].classList.toggle("black")
 
   }
   
 };
 
 
+function damierColor(){
+
+  clearDamier();
+
+  for(j = 0; j < cell.length; j++){
+    let col = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
+   
+    if(col === 1){
+      cell[j].classList.remove("disco-color2", "disco-color3", "disco-color4", "disco-color5");
+      cell[j].classList.add("disco-color1");
+    }
+
+    else if(col === 2){
+      cell[j].classList.remove("disco-color1", "disco-color3", "disco-color4", "disco-color5");
+      cell[j].classList.add("disco-color2");
+    }
+
+    else if(col === 3){
+      cell[j].classList.remove("disco-color1", "disco-color2", "disco-color4", "disco-color5");
+      cell[j].classList.add("disco-color3");
+    }
+
+    else if(col === 4){
+      cell[j].classList.remove("disco-color1", "disco-color2", "disco-color3", "disco-color5");
+      cell[j].classList.add("disco-color4");
+    }
+
+    else if(col === 5){
+      cell[j].classList.remove("disco-color1", "disco-color2", "disco-color3", "disco-color4");
+      cell[j].classList.add("disco-color5");
+    }
+
+  }
+
+};
+
+
+function damierLabyrinth(){
+  const grid = [
+    [1, 1, 1, 1, 1, 1, 1, 1],
+    [1, 0, 0, 1, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 1, 0, 1],
+    [1, 1, 1, 1, 0, 1, 0, 1],
+    [1, 0, 0, 0, 0, 1, 0, 1],
+    [1, 0, 1, 1, 1, 1, 0, 1],
+    [1, 0, 0, 0, 0, 0, 0, 1],
+    [1, 1, 1, 1, 1, 1, 1, 1],
+  ];
+
+  clearDamier();
+
+  for(let i = 0; i < 8; i++){
+    for(let j = 0; j < 8; j++){
+      const cell = document.querySelector('.js-row' + (i + 1) + '.js-col' + (j + 1));
+      if(grid[i][j] === 1){
+        cell.classList.add('black');
+      }
+    }
+  }
+}
   
 
 /**************************************************************/
@@ -91,7 +175,6 @@ function damier(){
 /**************************************************************/
 
 // Les Event Listener sont déclarés ici.
-
 
 /**************************************************************/
 /*                       Main Program                         */
@@ -101,7 +184,7 @@ function damier(){
 // uniquement les déclarations des Event Listener.
 
 document.addEventListener('DOMContentLoaded', function() {
-jsDamier.addEventListener("click", damier())
+ 
   console.log('Damier');
 
   // 1. Lorsque l'utilisateur clique sur le bouton "js-damier",
@@ -109,18 +192,21 @@ jsDamier.addEventListener("click", damier())
 
   // TIP : Ajouter la classe .black sur les cases concernées
 
+ jsDamierBtn.addEventListener("click", damier);
 
   // 2. Lorsque l'utilisateur clique sur le bouton "js-disco",
   // Afficher un dancefloor de lumières dans la grille
 
   // TIP : Ajouter les classes .color1, ... .color5 aléatoirement
 
+  jsDiscoBtn.addEventListener("click", damierColor);
 
   // 3. Lorsque l'utilisateur clique sur le bouton "js-labyrinth",
   // Afficher le motif présent sur le bouton dans la grille
 
   // TIP : Ajouter la classe .black sur les cases concernées
 
+  jsLabyrinthBtn.addEventListener("click", damierLabyrinth);
 
   // 4. Lorsque l'utilisateur enfonce le bouton de la souris sur une case (classe "js-cell"),
   // Afficher "push" sur fond jaune (utiliser la classe "push")
