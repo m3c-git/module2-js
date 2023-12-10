@@ -47,30 +47,24 @@ function createDamier() {
 
 // Les variables globales sont déclarées ici.
 // Uniquement si nécéssaire.
- 
-const blackDamier1 = document.querySelectorAll(".js-row1:nth-child(odd)");
-const blackDamier2 = document.querySelectorAll(".js-row2:nth-child(even)");
-const blackDamier3 = document.querySelectorAll(".js-row3:nth-child(odd)");
-const blackDamier4 = document.querySelectorAll(".js-row4:nth-child(even)");
-const blackDamier5 = document.querySelectorAll(".js-row5:nth-child(odd)");
-const blackDamier6 = document.querySelectorAll(".js-row6:nth-child(even)");
-const blackDamier7 = document.querySelectorAll(".js-row7:nth-child(odd)");
-const blackDamier8 = document.querySelectorAll(".js-row8:nth-child(even)");
+
 const jsDamierBtn = document.querySelector(".js-damier");
 
-const cell  = document.querySelectorAll(".js-cell");
+const cells  = document.querySelectorAll(".js-cell");
 const jsDiscoBtn = document.querySelector(".js-disco");
 
-/* const blackDamierLabyrin1 = document.querySelectorAll(".js-col1");
-const blackDamierLabyrin2 = document.querySelectorAll(".js-col1");
-const blackDamierLabyrin3 = document.querySelectorAll(".js-col1");
-const blackDamierLabyrin4 = document.querySelectorAll(".js-col1");
-const blackDamierLabyrin5 = document.querySelectorAll(".js-col1");
-const blackDamierLabyrin6 = document.querySelectorAll(".js-col1");
-const blackDamierLabyrin7 = document.querySelectorAll(".js-col7:nth-child(1,7)");
-const blackDamierLabyrin8 = document.querySelectorAll(".js-col8");
- */
 const jsLabyrinthBtn = document.querySelector(".js-labyrinth");
+
+const grid = [
+  [1, 1, 1, 1, 1, 1, 1, 1],
+  [1, 0, 0, 1, 0, 1, 0, 1],
+  [1, 0, 0, 0, 0, 1, 0, 1],
+  [1, 1, 1, 1, 0, 1, 0, 1],
+  [1, 0, 0, 0, 0, 1, 0, 1],
+  [1, 0, 1, 1, 1, 1, 0, 1],
+  [1, 0, 0, 0, 0, 0, 0, 1],
+  [1, 1, 1, 1, 1, 1, 1, 1],
+];
 
 /**************************************************************/
 /*                        Fonctions                           */
@@ -80,9 +74,9 @@ const jsLabyrinthBtn = document.querySelector(".js-labyrinth");
 
 function clearDamier(){
 
-  for(c = 0; c < cell.length; c++){
+  for(c = 0; c < cells.length; c++){
 
-    cell[c].classList.remove("black","disco-color1", "disco-color2", "disco-color3", "disco-color4", "disco-color5");
+    cells[c].classList.remove("black","disco-color1", "disco-color2", "disco-color3", "disco-color4", "disco-color5", "push", "pull", "boom");
 
   }
 
@@ -90,9 +84,20 @@ function clearDamier(){
 
 function damier(){
 
+  const blackDamier1 = document.querySelectorAll(".js-row1:nth-child(odd)");
+  const blackDamier2 = document.querySelectorAll(".js-row2:nth-child(even)");
+  const blackDamier3 = document.querySelectorAll(".js-row3:nth-child(odd)");
+  const blackDamier4 = document.querySelectorAll(".js-row4:nth-child(even)");
+  const blackDamier5 = document.querySelectorAll(".js-row5:nth-child(odd)");
+  const blackDamier6 = document.querySelectorAll(".js-row6:nth-child(even)");
+  const blackDamier7 = document.querySelectorAll(".js-row7:nth-child(odd)");
+  const blackDamier8 = document.querySelectorAll(".js-row8:nth-child(even)");
+
   clearDamier();
 
+
   for(i = 0; i < blackDamier1.length; i++){
+    
 
     blackDamier1[i].classList.toggle("black")
     blackDamier2[i].classList.toggle("black")
@@ -112,32 +117,32 @@ function damierColor(){
 
   clearDamier();
 
-  for(j = 0; j < cell.length; j++){
+  for(j = 0; j < cells.length; j++){
     let col = Math.floor(Math.random() * (5 - 1 + 1)) + 1;
    
     if(col === 1){
-      cell[j].classList.remove("disco-color2", "disco-color3", "disco-color4", "disco-color5");
-      cell[j].classList.add("disco-color1");
+      cells[j].classList.remove("disco-color2", "disco-color3", "disco-color4", "disco-color5");
+      cells[j].classList.add("disco-color1");
     }
 
     else if(col === 2){
-      cell[j].classList.remove("disco-color1", "disco-color3", "disco-color4", "disco-color5");
-      cell[j].classList.add("disco-color2");
+      cells[j].classList.remove("disco-color1", "disco-color3", "disco-color4", "disco-color5");
+      cells[j].classList.add("disco-color2");
     }
 
     else if(col === 3){
-      cell[j].classList.remove("disco-color1", "disco-color2", "disco-color4", "disco-color5");
-      cell[j].classList.add("disco-color3");
+      cells[j].classList.remove("disco-color1", "disco-color2", "disco-color4", "disco-color5");
+      cells[j].classList.add("disco-color3");
     }
 
     else if(col === 4){
-      cell[j].classList.remove("disco-color1", "disco-color2", "disco-color3", "disco-color5");
-      cell[j].classList.add("disco-color4");
+      cells[j].classList.remove("disco-color1", "disco-color2", "disco-color3", "disco-color5");
+      cells[j].classList.add("disco-color4");
     }
 
     else if(col === 5){
-      cell[j].classList.remove("disco-color1", "disco-color2", "disco-color3", "disco-color4");
-      cell[j].classList.add("disco-color5");
+      cells[j].classList.remove("disco-color1", "disco-color2", "disco-color3", "disco-color4");
+      cells[j].classList.add("disco-color5");
     }
 
   }
@@ -146,16 +151,6 @@ function damierColor(){
 
 
 function damierLabyrinth(){
-  const grid = [
-    [1, 1, 1, 1, 1, 1, 1, 1],
-    [1, 0, 0, 1, 0, 1, 0, 1],
-    [1, 0, 0, 0, 0, 1, 0, 1],
-    [1, 1, 1, 1, 0, 1, 0, 1],
-    [1, 0, 0, 0, 0, 1, 0, 1],
-    [1, 0, 1, 1, 1, 1, 0, 1],
-    [1, 0, 0, 0, 0, 0, 0, 1],
-    [1, 1, 1, 1, 1, 1, 1, 1],
-  ];
 
   clearDamier();
 
@@ -168,7 +163,26 @@ function damierLabyrinth(){
     }
   }
 }
-  
+
+
+function damierPush(push){
+
+  push.target.classList.remove("pull", "boom")
+  push.target.classList.add("push")
+}
+
+function damierPull(pull){
+
+  pull.target.classList.remove("push", "boom")
+  pull.target.classList.add("pull")
+
+}
+
+function damierBoom(boom){
+
+  boom.target.classList.remove("push", "pull")
+  boom.target.classList.add("boom")
+}
 
 /**************************************************************/
 /*                      Event listeners                       */
@@ -214,7 +228,23 @@ document.addEventListener('DOMContentLoaded', function() {
   // afficher "pull" sur fond orange (utiliser la classe "pull")
   // Enfin, s'il double clique sur la case,
   // afficher "boom" sur fond rouge (utiliser la classe "boom")
+  cells.forEach(function(e){
 
+    e.addEventListener("mousedown", damierPush);
+
+  });
+
+  cells.forEach(function(e){
+
+    e.addEventListener("mouseup", damierPull);
+
+  });
+
+  cells.forEach(function(e){
+
+    e.addEventListener("dblclick", damierBoom);
+
+  });
 
   // 5. Lorsque l'utilisateur appuie sur une des 4 flèches du clavier,
   // Afficher bobby et le déplacer sur le grille (de case en case)
